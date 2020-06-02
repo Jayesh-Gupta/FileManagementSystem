@@ -1,0 +1,20 @@
+{%extends 'base.html'%}
+{%load static %}
+{%block content%}
+
+<header><h2 class="tm-blue-text tm-section-title tm-margin-b-30">Forget password</h2></header>
+<form action="/forgetpass" method="post">
+    {%csrf_token%}
+    <hr><br>
+    <input type="email" placeholder="Email" class="form-control" name="email" required><br>
+    <br><hr>
+     <button type="submit" class="btn btn-info">genrate OTP</button>
+    {%for message in messages%}
+    {{message}}
+    {%endfor%}
+     <br><br>
+   <h6>otp expires in 10 min</h6>
+</form>
+
+
+{%endblock%}

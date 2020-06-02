@@ -1,0 +1,24 @@
+{%extends 'base.html'%}
+{%load static %}
+{%block content%}
+
+<header><h2 class="tm-blue-text tm-section-title tm-margin-b-30">change password</h2></header>
+<form action="/changepass" method="post">
+    {%csrf_token%}
+    <hr><br>
+    <input type="number" placeholder="6 Digit OTP" class="form-control" name="otp" required><br>
+    <input type="text" placeholder="User ID" class="form-control" name="userid" required> <br>
+    <input type="password" placeholder="New Password" class="form-control" name="password" required> <br>
+    <input type="password" placeholder="confrim password" class="form-control" name="confrimpassword" required> <br>
+    <br><hr>
+     <button type="submit" class="btn btn-info">Change Password</button>
+    {%for message in messages%}
+    {{message}}
+    {%endfor%}
+     <br>
+      /*<a href="register" >not having an account?</a>
+      <a href="/login" >login</a>*/
+</form>
+
+
+{%endblock%}

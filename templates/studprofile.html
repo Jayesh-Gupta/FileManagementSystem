@@ -1,0 +1,25 @@
+{%extends 'base_student.html'%}
+{%load static%}
+{%static 'img' as baseUrl%}
+{%block content%}
+<header><h1 class="tm-blue-text tm-section-title tm-margin-b-30">Hello {{username}}</h1></header>
+
+  {%for message in messages%}
+    <br>{{message}}
+    {%endfor%}
+<form action="/user/home" method="POST">
+  {%csrf_token%}
+  <hr><br>
+  <button type="submit" class="btn btn-info">view file qrs</button>
+</form>
+<br><hr>
+{%for resultset in resultsets%}
+
+<img src="{{resultset.image_qr.url}}" alt="Image" height="200" width="200" >
+<br><h4 class="text-success"> file id: {{resultset.id}}  </h4>
+
+{%endfor%}
+
+
+
+{%endblock%}

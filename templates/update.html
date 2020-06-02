@@ -1,0 +1,42 @@
+{%extends 'base_department.html'%}
+{%load static%}
+{%block content%}
+<script>
+    function updateTextInput(val) {
+          document.getElementById('rangevalue').value=val;
+        }
+
+</script>
+<header><h2 class="tm-blue-text tm-section-title tm-margin-b-30">update file</h2></header>
+    {%for message in messages%}
+    <br>{{message}}
+    {%endfor%}
+
+<form action="/qr/status/{{id}}" method="POST">
+    {%csrf_token%}
+    <hr><br>
+    <input type="number" placeholder="" value="{{id}}" class="form-control"  disabled required><br>
+    <input type="number" placeholder="" value="{{file_type}}" class="form-control"  disabled required><br>
+     <select type="text"  placeholder="name of department" class="form-control" name="department" required><br>
+    <option selected="selected" disabled>name of department</option>
+
+         <option value="clerical" >clerical</option>
+         <option value="accounts">accounts</option>
+         <option value="management">management</option>
+         <option value="director">director</option>
+
+     </select><br>
+    <input type="range" min="0" max="10"  class="form-control" name="range" oninput="this.form.rangevalue.value=this.value"  required><br>
+    <input type="text"  id="rangevalue" class="form-control" name="rangevalue" value=""  oninput="this.form.range.value=this.value" required><br>
+    <select type="text"  placeholder="Status of file" class="form-control" name="status" required><br>
+    <option selected="selected" disabled>status of file</option>
+    <option value="pending">pending</option>
+     <option value="done">done</option>
+    </select>
+        <br><hr>
+    <button type="submit" class="btn btn-success">update file</button><br>
+
+
+</form>
+
+{%endblock%}

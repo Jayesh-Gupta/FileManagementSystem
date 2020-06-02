@@ -1,0 +1,20 @@
+{%extends 'base_student.html'%}
+{%load static%}
+{%block content%}
+<header><h1 class="tm-blue-text tm-section-title tm-margin-b-30">Hello {{username}}</h1></header>
+<h4 class="text-info">current status of file</h4>
+{%for message in messages%}
+    <br>{{message}}
+    {%endfor%}
+<hr><br>
+<h4 class="text-primary">your file Id : {{resultset.id}}</h4>
+{%if resultset.status in "done"%}
+<h4 class="text-success" >Status:       {{resultset.status}}</h4>
+{%else%}
+<h4 class="text-warning" >Status:       {{resultset.status}}</h4>
+{%endif%}
+<h4 class="text-primary">In Department: {{resultset.department}}</h4>
+<h4 class="text-primary">Estimated Days:{{resultset.est_days}}</h4>
+<h4 class="text-primary">Last Updated:  {{resultset.last_modified}}</h4>
+<br><hr>
+{%endblock%}

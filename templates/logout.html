@@ -1,0 +1,16 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block content%}
+{%if 'username'  in request.session%}
+<h1>Are you sure????</h1>
+<form action="/qr/logout" method="POST">
+    {%csrf_token%}<hr><br>
+<button class="btn btn-danger" value="yes" name="yesbtn">Yes</button>&nbsp;&nbsp;&nbsp;&nbsp;
+<button class="btn btn-success" value="no" name="nobtn">No</button>
+    <br><hr>
+</form>
+
+{%else%}
+<h1>you are successfully logged out!!!!</h1>
+{%endif%}
+{%endblock%}

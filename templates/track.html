@@ -1,0 +1,116 @@
+{%extends 'base_student.html'%}
+{%load static%}
+{%block content%}
+<style type="text/css">
+    .container
+    {
+    width:100%;
+    
+
+    }
+    .progressbar{
+
+        counter-reset:step;  /* stp is variable */
+
+
+    }
+.progressbar li{
+list-style-type:none;
+float: left;
+width:25%;
+position:relative;
+text-align :center;
+    }
+
+        .progressbar li:before
+        {
+        content:counter(step);
+        counter-increment:step;
+        width:30px;
+        height:30px;
+        line-height:30px;           /* this is to center the text in circle */
+        border:2px solid #ddd;
+        display:block;
+        text-align:center;
+        margin:0 auto 10px auto ;
+        border-radius:50%;
+        background-color:white;
+
+    }
+
+    .progressbar li:after
+    {
+    content:'';
+    position:absolute ;
+    width:100%;
+    height:2px;
+    background-color:#ddd;
+    top:15px;
+    left:-50%;
+    z-index: -1;
+
+    }
+
+    .progressbar li:first-child:after
+    {
+    content:none;
+    }
+
+    .progressbar li.active
+    {
+    color:green;
+
+    }
+    .progressbar li.active:before
+    {
+    border-color:green;
+    }
+    .progressbar li.active + li:after
+    {
+    background-color:green;
+    }
+
+       .progressbar li.deactive
+    {
+    color:red;
+    }
+    .progressbar li.deactive:before
+    {
+    border-color:red;
+    }
+    .progressbar li.deactive + li:after
+    {
+    background-color:red;
+    }
+
+</style>
+<header><h1 class="tm-blue-text tm-section-title tm-margin-b-30">Your File Path</h1></header>
+
+<form action="/user/vfpath" method="POST">
+    {%csrf_token%}
+    <br><hr>
+    <select type="text" placeholder="Your File Id" class="form-control" name="file_id" required>
+        <option selected="selected" disabled>select your file</option>
+        {%for resultset in resultsets%}
+        <option value={{resultset.id}}>{{resultset.id}}</option>
+        {%endfor%}
+    </select>
+    <hr><br>
+    <button type="submit" class="btn btn-info">Find Path</button>
+</form>
+<br>
+<div class="container">
+    <div class="progressbar" >
+
+{%for message in messages%}
+
+         <li class={{message.extra_tags}}>{{message}}</li>
+
+
+        {%endfor%}
+
+
+    </div>
+</div>
+<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href='/user/view' float="left">current info of file</a>
+{%endblock%}

@@ -1,0 +1,17 @@
+{%extends 'base_department.html'%}
+{%load static%}
+{%static 'img' as baseUrl%}
+{%block content%}
+<header><h1 class="tm-blue-text tm-section-title tm-margin-b-30">Hello {{username}}</h1></header>
+  {%for message in messages%}
+    <br>{{message}}
+    {%endfor%}
+<form action="/qr/home" method="POST">
+  {%csrf_token%}
+  <hr><br>
+  <input type="text" placeholder="File Id"  class="form-control" name="file_id" required><br><hr>
+  <button type="submit">getqr</button>
+<img src="{{resultset.image_qr.url}}" alt="Image" height="200" width="200" align="right" float="right">
+</form>
+
+{%endblock%}

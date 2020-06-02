@@ -1,0 +1,70 @@
+{%extends 'base.html'%}
+{%load static %}
+{%block content%}
+
+<header><h2 class="tm-blue-text tm-section-title tm-margin-b-30">Register</h2></header>
+<style>
+
+    #list1{
+    background-color:rgb(255,232,232);
+    border:1px solid red;
+    color:red;
+    display:block;
+    margin:auto;
+    width:50%;
+    font-size:18px;
+    font-weight:bold;
+     text-align:center;
+    padding:10px 25px;
+    }
+   #list2{
+    background-color:rgb(144,238,144);
+    border:1px solid green;
+    color:green;
+    display:block;
+    margin:auto;
+    width:50%;
+    font-size:18px;
+    font-weight:bold;
+     text-align:center;
+    padding:10px 25px;
+    }
+</style>
+
+
+
+
+<!--<p id="messages" > </p>-->
+<!--       {%for message in messages%}-->
+<!--    <br>{{message}}-->
+<!--    {%endfor%}-->
+
+<form   id="register_form">
+    {%csrf_token%}
+
+    <hr><br>
+    <input type="email" id="email" placeholder="email" class='form-control' name="email" required><br>
+    <input type="name" id="name" placeholder="name" class='form-control' name="name" required><br>
+    <input type="username" id="username" placeholder="username" class='form-control' name="username" required><br>
+    <input type="password"  id="password" placeholder="password" class='form-control' name="password" required><br>
+    <input type="password" id="confrimpassword" placeholder="confrim password" class='form-control' name="confrimpassword" required><br>
+    <select name="user_type" id="user_type" placeholder="type" class='form-control' required="true">
+       <option  selected="selected" disabled>user-type</option>
+        <option value=1 >Student</option>
+        <option value=2>Department</option>
+    </select><br>
+    <input type="text" id="address" placeholder="address" class='form-control' name="address"><br>
+    <input type="text" id="contact" placeholder="contact" class='form-control' name="contact">
+
+    <br>
+    <ul  id="list" >
+
+    </ul><hr>
+     <button type="submit" id="registerbtn"   class="btn btn-info">register</button>
+
+<br><br><a href="login" >Have an account already?</a>
+</form>
+
+<script src="{%static 'js/jquery-1.11.3.min.js'%}"></script>
+<script src="{%static 'js/ajax.js'%}"></script>
+ {%endblock%}

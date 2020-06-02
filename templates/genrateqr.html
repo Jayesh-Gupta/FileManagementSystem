@@ -1,0 +1,46 @@
+{% extends 'base_department.html'%}
+{%load static%}
+{%static 'img' as baseUrl%}
+{%block content%}
+<img src="{{update.image_qr.url}}" alt="Image" height="200" width="200" align="right" float="right">
+
+
+<header><h2 class="tm-blue-text tm-section-title tm-margin-b-30">Genrate Qr</h2></header>
+    {%for message in messages%}
+    <br>{{message}}
+    {%endfor%}
+
+<form action="/qr/genrateqr" method="POST">
+    {%csrf_token%}
+    <hr><br>
+    <input type="text" class="form-control" name="userid"   placeholder="User ID" required><br>
+     <select type="text"  placeholder="name of department" class="form-control" name="department" required><br>
+    <option selected="selected" disabled>name of department</option>
+     <option value="clerical">clerical</option>
+    <option value="management">management</option>
+    <option value="director">director</option>
+    </select><br>
+    <input type="range" min="0" max="10"  class="form-control" name="range" placeholder="est_days" oninput="this.form.rangevalue.value=this.value"  required><br>
+    <input type="text"  id="rangevalue" class="form-control" name="rangevalue" value="" placeholder="est_days" oninput="this.form.range.value=this.value" required><br>
+    <select type="text"  placeholder="Status of file" class="form-control" name="status" required><br>
+    <option selected="selected" disabled>status of file</option>
+    <option value="pending">pending</option>
+        <option value="done">done</option>
+    </select><br>
+    <select type="text" class="form-control" name="file_type" required><br>
+        <option selected="selected" disabled>type of file</option>
+     <option value='1'>1(CMAD)</option>
+    <option value="2">2(CMA)</option>
+    <option value="3">3(DMAC)</option>
+    <option value="4">3(CA)</option>
+    </select>
+    <br><hr>
+    <button type="submit" class="btn btn-success">genrate qr</button><br>
+</form>
+<br><<hr>
+<h4>C => Clerical</h4>
+<h4>A => Accounts</h4>
+<h4>M => Management</h4>
+<h4>D => Director</h4>
+<hr><br>
+{%endblock%}

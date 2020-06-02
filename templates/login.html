@@ -1,0 +1,22 @@
+{%extends 'base.html'%}
+{%load static %}
+{%block content%}
+
+<header><h2 class="tm-blue-text tm-section-title tm-margin-b-30">login</h2></header>
+<form action="login" method="post">
+    {%csrf_token%}
+    <hr><br>
+    <input type="username" placeholder="username" class="form-control" name="username"><br>
+    <input type="password" placeholder="password" class="form-control" name="password">
+    <a href="forgetpass" style=" float:right;"><h6>forget password?</h6></a><br>
+    <br><hr>
+     <button type="submit" class="btn btn-info">login</button>
+    {%for message in messages%}
+    {{message}}
+    {%endfor%}
+     <br>
+      <a href="register" >not having an account?</a>
+</form>
+
+
+{%endblock%}
